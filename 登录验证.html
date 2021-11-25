@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            border: 1px solid #0094ff;
+            margin: 100px auto;
+            text-align: center;
+            border-collapse: collapse;
+        }
+
+        table td {
+            border: 1px solid #0094ff;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td colspan="2">欢迎登录</td>
+        </tr>
+        <tr>
+            <td>用户名：</td>
+            <td><input type="text" id="txtUName"></td>
+        </tr>
+        <tr>
+            <td>密码：</td>
+            <td><input type="text" id="txtPwd"></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="button" value="登录">
+                <input type="button" value="注册">
+            </td>
+        </tr>
+    </table>
+    <button id="btn">点击</button>
+    <script>
+        // 目标：登录时先做登录验证 ； 用户名和密码不能为空格~~
+        // 思路： 
+        //      事件源：登录按钮
+        //      事件类型：onclick
+        //      事件处理函数：获取两个文本框的值，判断是否为空
+
+        // 1.获取两个文本框，存入全局变量中
+        var txtName = document.querySelector('#txtUName');
+        var txtPwd = document.querySelector('#txtPwd');
+        // 根据value属性查询按钮dom对象
+        document.querySelector('[value=登录]').onclick = function(e) {
+            if (e.keyCode == 13) {
+                alert('登陆成功')
+            }
+            // 去掉左右两边空格
+            var strName = txtName.value.trim();
+            var strPwd = txtPwd.value.trim();
+            // 判断值是否为空
+            if (strName.length == 0) {
+                alert('用户名不能为空');
+                // 让文本框获取焦点
+                txtName.focus();
+            } else if (strPwd.length == 0) {
+                alert('用户名密码不能为空');
+                // 让密码框获取焦点
+                txtPwd.focus()
+            } else if (strName !== 'jack' || strPwd !== '123456') {
+                alert('用户名或密码错误');
+            } else {
+                alert('登陆成功');
+                location.href = 'http://www.bilibili.com'
+            }
+        }
+    </script>
+</body>
+</html>
